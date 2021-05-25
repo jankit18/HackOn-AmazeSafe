@@ -54,16 +54,15 @@ class Event:
 
     def update_state(self):
 
-        if self.gps:
-            self.gps = self.get_gps_state()
-            print('CURRENT GPS COORDINATES', self.gps)
+        self.gps = self.get_gps_state()
+        print('CURRENT GPS COORDINATES', self.gps)
 
-            if not self.check_threshold_gps(
-                    self.gps,
-                    self.ideal_gps,
-                    self.gps_threshold):
-                self.alarm = True
-                print('GPS WITHIN THRESHOLD ->', False)
+        if not self.check_threshold_gps(
+                self.gps,
+                self.ideal_gps,
+                self.gps_threshold):
+            self.alarm = True
+            print('GPS WITHIN THRESHOLD ->', False)
      
         self.vibratation_flag = self.vibratation_state()
         if self.vibratation_flag:
@@ -162,7 +161,7 @@ class Event:
             return False
 
 
-#a = Event()
-#while(True):
-#    time.sleep(5)
-#    a.update_state()
+a = Event()
+while(True):
+    time.sleep(5)
+    a.update_state()
