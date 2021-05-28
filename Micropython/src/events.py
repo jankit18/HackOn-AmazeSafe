@@ -1,21 +1,3 @@
-'''DEFAULT_BEACON_INTERVAL = 30
-INIT_GPS = '0 0.0000, 0 00.0000'
-global LOCK_STATE
-LOCK_STATE = False
-
-EVENTS = {
-    'Alarm': False,
-    'Open': False,
-    'Closed': True,
-    'Received': True,
-    'Vibration': True,
-    'Sanatized': False,
-    'Temperature': 25,
-    'Wifi_Error': False,
-    'gps': '0 0.0000, 0 00.0000',
-    'snap': False
-}'''
-
 import random
 import time
 
@@ -24,30 +6,24 @@ class Event:
 
     def __init__(
             self,
-            ideal_gps=[0.0000, 00.0000],
-            Vibratation=True,
-            Temp=25,
+            ideal_gps=None,
+            gps_threshold=None,
             Close=True,
             Open=False,
-            wifi_error=False,
             received=True,
-            Alarm=False,
             sanatized=False,
-            snap=False,
-            gps_threshold=16,
-            lock_state=False):
+            lock_state=None):
 
         self.ideal_gps = ideal_gps
         self.gps = None
-        self.vibratation_flag = Vibratation
-        self.temperature = Temp
+        self.vibratation_flag = None
+        self.temperature = None
         self.Close = Close
         self.Open = Open
-        self.wifi_error = wifi_error
         self.received = received
-        self.alarm = Alarm
+        self.alarm = False
         self.sanatized = sanatized
-        self.snap = snap
+        self.snap = False
         self.gps_threshold = gps_threshold
         self.lock_state = lock_state
         self.image = None
@@ -63,7 +39,7 @@ class Event:
                 self.gps_threshold):
             self.alarm = True
             print('GPS WITHIN THRESHOLD ->', False)
-     
+
         self.vibratation_flag = self.vibratation_state()
         if self.vibratation_flag:
             self.alarm = True
@@ -78,8 +54,8 @@ class Event:
                 self.Close = True
                 print("PACKAGE HAS BEEN RECEIVED AND BOX IS CLOSING")
                 self.sanatized = False
-        
-        if not self.sanatized:
+
+        if self.sanatized:
             self.sanatized = self.sanatize_box()
             print('BOX HAS BEEN SANATIZED')
 
@@ -91,7 +67,7 @@ class Event:
 
         if self.Close:
             self.lock()
-     
+
         if self.snap:
             self.image = self.get_snap()
             self.snap = False
@@ -127,7 +103,7 @@ class Event:
             self.lock_state = False
             print("LOCK HAS BEEN UNLOCKED")
             return True   # you have to unlock
-           
+
         else:
             print("SAFE ALREADY IS UNLOCKED")
             return False  # you donot have to unlock
@@ -137,12 +113,12 @@ class Event:
         if self.lock_state:
             print("LOCK HAS BEEN ALREADY LOCKED")
             return False   # you have to unlock
-           
+
         else:
             self.lock_state = True
             print("SAFE ALREADY IS UNLOCKED")
             return True  # you donot have to unlock
-            
+
     def sanatize_box(self):
         ''' Will be used to activate the sanatizer'''
 
@@ -161,7 +137,3 @@ class Event:
             return False
 
 
-a = Event()
-while(True):
-    time.sleep(5)
-    a.update_state()
