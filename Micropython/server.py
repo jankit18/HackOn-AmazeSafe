@@ -27,8 +27,20 @@ def run(essid, password):
     print("Server is running [{}].".format(my_ip))
     LOCK_STATE = src.DEFAULT_LOCK_STATE
     while(True):
-        countdown(src.DEFAULT_BEACON_INTERVAL)
-        event = src.Event(ideal_gps = src.INITIAL_GPS,gps_threshold = src.GPS_THRESHOLD, lock_state = LOCK_STATE)
+        init_data = src.receive_data()
+        event = src.Event(ideal_gps = src.INITIAL_GPS,gps_threshold = src.GPS_THRESHOLD, Open = init_data['open'],delivered = init_data['delivered'], sanatize = init_data['sanatize'],lock_state = LOCK_STATE)
         event.update_state()
         LOCK_STATE = event.lock_state
+        countdown(src.DEFAULT_BEACON_INTERVAL)
+        send_info = { 'GPS' : event.gps,
+                      'TEMPERATURE' : event.temperature,
+                      'ALARM' : event.alarm,
+                      'IMAGE' : event.image
+                    }
+        src.send_data(send_info)
+          
+          
+        print("*********************EVENT OVER **************************")
+wifi_username = "Angrez"
+password = "Shayan@00000"
 run(wifi_username,password)
