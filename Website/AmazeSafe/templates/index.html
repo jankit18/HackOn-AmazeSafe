@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+{% load socialaccount %} 
+{% providers_media_js %} 
+{% load static %}
+<html>
+<head>
+    <Title>Nexus</Title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons-->
+    <script src="https://use.fontawesome.com/9f7d8623b1.js"></script>
+    <link   rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+     <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+</head>
+<body>
+    <header>
+        <div class="main">
+            <ul>
+                <li><a href="https://amazon.in"  id="active">AMAZON</a></li>
+            </ul>
+        </div>
+        <div class="body">
+            <h1>HackOn By Amazon</h1>
+            <br> <h1>Project: AmazeSafe</h1>
+            <br>
+            <br>
+            <br>
+            <button id="but">
+                <a id="goog" class="fa fa-google" aria-hidden="true" href = "{% provider_login_url "google" %}"> Login to Continue</a>
+            </button>
+        </div>
+
+        </div>
+    </header>
+
+    <!-- Minified CSS and JS -->
+    
+</body>
+   
+</html>
+<style>
+    *{
+    margin: 0 ;
+    padding: 0;
+}
+
+body{
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("{% static 'images/2.jpg' %}");
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+ul{
+    list-style-type: none;
+    margin-top: 25px;
+}
+
+ul li{
+    display: inline-block;
+}
+
+ul li a{
+    text-decoration: none;
+    background-color: #000;
+    color: rgb(22, 54, 34);
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    transition: 0.5s ease;
+}
+
+ul li a:hover{
+    background-color: #fff;
+    color: #000;
+}
+
+#goog{
+    text-decoration: none;
+    color:white;
+}
+#goog:hover{
+    color:black;
+}
+
+
+#active{
+    background-color: #fff;
+    color: #000;
+}
+
+.main{
+    max-width: 1200px;
+    margin: auto;
+}
+
+.body{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    border: 1px solid transparent;
+}
+
+.body h1{
+    font-size: 50px;
+    font-family: 'Train One', cursive;;
+}
+
+.body button{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: transparent;
+    color: white;
+    text-align: center;
+    padding: 10px 30px;
+    border: 1px solid white;
+}
+
+.body button:hover{
+    background-color: white;
+    color: black;
+}
+.body button:hover #goog{
+    color: black;
+}
+ 
+button h3{
+    font-size: 15px;
+}
+</style>
