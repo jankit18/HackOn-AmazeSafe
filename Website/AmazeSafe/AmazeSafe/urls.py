@@ -18,6 +18,7 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('AppHome.urls')),
-    path('api/',include('api.urls'))
+    path('accounts/', include('allauth.urls')),
+    path('amaze-safe/',include('AppHome.urls')),
+    path('api/',include('Api.urls'))
 ]

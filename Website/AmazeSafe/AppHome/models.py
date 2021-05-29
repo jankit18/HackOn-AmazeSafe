@@ -12,7 +12,7 @@ class UserInfo(models.Model):
         return self.name+" "+str(self.user_id)
 
 
-class AmazeUsersOrders(models.Models):
+class AmazeUsersOrders(models.Model):
     userInstance = models.ForeignKey(User, null = True, on_delete=models.SET_NULL)
     orderName = models.CharField(max_length = 500)
     orderAddress = models.CharField(max_length = 1000)
@@ -28,4 +28,7 @@ class AmazeUsersOrders(models.Models):
 class AmazeWarriorsOrders(models.Model):
     userInstance = models.ForeignKey( User, null = True, on_delete = models.SET_NULL)
     orderId = models.ForeignKey(AmazeUsersOrders, null = True, on_delete = models.SET_NULL)
+
+    def __str__(self):
+        return str(self.orderId.contact)
     
