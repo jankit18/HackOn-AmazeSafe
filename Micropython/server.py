@@ -41,6 +41,5 @@ def run(essid, password):
           
           
         print("*********************EVENT OVER **************************")
-wifi_username = "Angrez"
-password = "Shayan@00000"
+
 run(wifi_username,password)
