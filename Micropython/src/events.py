@@ -79,7 +79,10 @@ class Event:
 
         return ([random.getrandbits(4), random.getrandbits(4)])
 
-    def check_threshold_gps(self,Current_gps=None,Ideal_gps=None,Gps_threshold =None):
+    def check_threshold_gps(self,
+                            Current_gps=None,
+                            Ideal_gps=None,
+                            Gps_threshold=None):
 
         ''' Ideally it should calculate the distance from actual
         location but since it has not been implemented yet
@@ -134,7 +137,3 @@ class Event:
             return True
         else:
             return False
-
-
-
-
