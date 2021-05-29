@@ -8,21 +8,20 @@ class Event:
             self,
             ideal_gps=None,
             gps_threshold=None,
-            Close=True,
-            Open=False,
-            received=True,
-            sanatized=False,
+            Open=True,
+            delivered=True,
+            sanatize=False,
             lock_state=None):
 
         self.ideal_gps = ideal_gps
         self.gps = None
         self.vibratation_flag = None
         self.temperature = None
-        self.Close = Close
+        self.Close = not Open
         self.Open = Open
-        self.received = received
+        self.delivered = delivered
         self.alarm = False
-        self.sanatized = sanatized
+        self.sanatize = sanatize
         self.snap = False
         self.gps_threshold = gps_threshold
         self.lock_state = lock_state
@@ -50,13 +49,13 @@ class Event:
 
         if self.Open:
             self.unlock()
-            if self.received:
+            if self.delivered:
                 self.Close = True
-                print("PACKAGE HAS BEEN RECEIVED AND BOX IS CLOSING")
-                self.sanatized = False
+                print("PACKAGE HAS BEEN DELIVERED AND BOX IS CLOSING")
+                self.sanatize = False
 
-        if self.sanatized:
-            self.sanatized = self.sanatize_box()
+        if self.sanatize:
+            self.sanatize = self.sanatize_box()
             print('BOX HAS BEEN SANATIZED')
 
         if self.alarm:
@@ -80,7 +79,10 @@ class Event:
 
         return ([random.getrandbits(4), random.getrandbits(4)])
 
-    def check_threshold_gps(self,Current_gps=None,Ideal_gps=None,Gps_threshold =None):
+    def check_threshold_gps(self,
+                            Current_gps=None,
+                            Ideal_gps=None,
+                            Gps_threshold=None):
 
         ''' Ideally it should calculate the distance from actual
         location but since it has not been implemented yet
@@ -135,5 +137,3 @@ class Event:
             return True
         else:
             return False
-
-
