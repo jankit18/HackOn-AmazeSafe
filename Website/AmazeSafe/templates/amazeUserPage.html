@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en" dir="ltr">
-<link rel="stylesheet" href="styles.css">
+
 </link>
 
 <head>
@@ -21,9 +21,10 @@
       <nav class="navbar">
           <div class="container-fluid">
               <h3>AmazeSafe</h3>
+              <button class="button"><a href="{% url 'userLogout' %}" >Logout</a></button>
           </div>
       </nav>
-  <p class="status">Status: Safe</p>
+  <p class="status" id="st">Status: Safe</p>
   
   <br></br>
 <div>
@@ -207,7 +208,30 @@
                  console.log("Error enable to open box")  
         })  
   }
+  
+  function checkThreat(){
+    const status = document.getElementById('st')
 
+    setInterval(function(){
+        url = "http://127.0.0.1:8000/api/checkThreat"
+        fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data){
+            if (data== "1"){
+                console.log("threat")
+                status.innerText = " Status: Threat"
+                location.href= "http://127.0.0.1:8000/amaze-user/threat"
+            }
+            else
+                console.log("safe")
+                status.innerText = " Status: Safe" 
+        }); 
+    },2000);
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    checkThreat();
+  })
 
 </script>
 <style>
