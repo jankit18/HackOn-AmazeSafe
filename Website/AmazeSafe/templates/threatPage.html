@@ -31,35 +31,49 @@
     </div>
 
 
-    <div class="btn-group">
-  <button>Notify Friends</button>
-  <button>Stop Alarm</button>
-  <button>Snapshot</button>
-  <button>Get Location</button>
-</div>
+    
 
-
+<div id="mid">
 <div class="Section">Alarm Status : <span class="description">{{alarmStatus}}</span></div>
 <div class="Section">Geolocation Coordinates: <span class="description"> {{gpsCoordinate}}</span></div>
 <div class="Section">Snapshot Matrix : <span class="description">{{imageMatrix}}</span></div>
-<div class="Section">Friends List : <span class="description">Friends and their Whatsapp Numbers on which threat alert was sent</span></div>
+<div class="Section">Friends List : <span class="description"><a href="#" id="x">Friend List</a></span></div>
+</div>
   </body>
 </html>
 <style>
+  body{
+    margin:10px;
+  }
+  .btn-group{
+    display:flex;
+    justify-content: center;
+  }
     .btn-group button {
-  background-color: red; /* Green background */
-  border: 5px solid black; /* Green border */
-  color: white; /* White text */
-  padding: 10px 24px; /* Some padding */
-  cursor: pointer; /* Pointer/hand icon */
-  float: right; /* Float the buttons side by side */
-  width:25%;
+  background-color: brown; 
+  border: 5px solid black; 
+  color: white; 
+  padding: 10px 24px; 
+  cursor: pointer; 
+  float: right; 
+  width:fit-to-content;
   height:110px;
-  font-size: 40px;
+  font-size: 20px;
   display: inline-block;
   border-radius: 16px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
+  margin:10px;
+}
+#x{
+  cursor: pointer; 
+}
+#mid{
+  margin-left:20%;
+  display:flex;
+  flex-direction: column;
+   align-items:flex-start;
+
 }
 .home-button{
   display: flex;
@@ -70,10 +84,10 @@
 .button {
   background-color: #4CAF50; /* Green */
   color: white;
-  padding: 15px 32px;
+  padding: 15px;
   text-align: center;
   display: inline-block;
-  font-size: 30px;
+  font-size: 15px;
   margin: 4px 2px;
   cursor: pointer;
 }
@@ -87,9 +101,7 @@ body{
   display: table;
 }
 
-.btn-group button:not(:last-child) {
-  border-right: none; /* Prevent double borders */
-}
+
 
 /* Add a background color on hover */
 .btn-group button:hover {
@@ -97,22 +109,26 @@ body{
    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0
 }
 .header{
-  font-size: 40px;
+  font-size: 25px;
 
 }
 .Threat{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding-top: 50px;
 }
 .Section{
   height:150px;
-  font-size: 70px;
-  margin-bottom: 200px;
-  margin-top: 100px;
+  font-size: 40px;
+  margin-bottom: 5px;
+  margin-top: 5px;
   color: white;
   font-weight: bolder;
 }
 .Threat-heading{
-  font-size: 80px;
+  font-size: 50px;
   color :yellow	;
   font-weight: bolder;
 }
