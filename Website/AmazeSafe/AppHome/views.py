@@ -31,6 +31,7 @@ def distinguishUser(request):
 def warriorRequest(request):
     warriorOrdersObj = AmazeWarriorsOrders.objects.filter(userInstance = request.user)
     x = []
+    z = []
     print(warriorOrdersObj)
     for i in warriorOrdersObj:
         print(i)
@@ -45,9 +46,19 @@ def warriorRequest(request):
                 "orderDate":str(y.orderDate)
             }
             x.append(data)
+        elif (y.orderStatus=="Delivered"): 
+            data ={
+                "address" : y.orderAddress,
+                "contact" : y.contact,
+                "status" : y.orderStatus,
+                "deliveryId": i.id,
+                "orderDate":str(y.orderDate)
+            }
+            z.append(data)
 
     context = {
-        "outForDeliveries":SafeString(x)
+        "outForDeliveries":SafeString(x),
+        "previousDeliveries": SafeString(z)
     }
     
     return render(request,'amazeWarriorPage.html',context) 
@@ -113,3 +124,8 @@ def threatRequest(request):
 
     return render(request,'threatPage.html',context)
 
+@login_required
+def userLogout(request):
+    logout(request)
+    #messages.success(request, 'You have been Logged Out successfully.')
+    return redirect('loginHome')

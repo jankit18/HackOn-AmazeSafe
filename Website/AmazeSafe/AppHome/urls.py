@@ -6,4 +6,5 @@ urlpatterns = [
      path('amaze-warrior/',views.warriorRequest, name="amazeWarrior"),
      path('amaze-user/',views.clientRequest, name="amazeUser"),
      path('amaze-user/threat/',views.threatRequest, name="threat"),
+     path('logout/',views.userLogout, name="userLogout"),
 ]
