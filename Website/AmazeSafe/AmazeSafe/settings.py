@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
     #providers
     'allauth.socialaccount.providers.google',
+
 ]
 
 MIDDLEWARE = [
@@ -86,8 +87,12 @@ WSGI_APPLICATION = 'AmazeSafe.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'demo_1',
+        'USER': 'ankitjaiswal',
+        'PASSWORD': 'awsrds1234',
+        'HOST': 'database-1.c6jeytxrrvil.us-west-2.rds.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
@@ -144,7 +149,7 @@ SITE_ID = 1
 
 
 
-LOGIN_REDIRECT_URL="http://127.0.0.1:8000/AmazeSafe"
+LOGIN_REDIRECT_URL="http://127.0.0.1:8000/category"
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -157,3 +162,5 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+
