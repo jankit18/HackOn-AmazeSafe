@@ -1,5 +1,6 @@
 import requests
 from django.shortcuts import render
+from django.contrib import messages
 
 from rest_framework.decorators import api_view
 from  rest_framework.response import Response
@@ -56,13 +57,15 @@ def boxOpenRequest(request, deliveryId):
         dataObj = {"value": json.dumps(d)}
 
         x = requests.post(url, json = dataObj, headers = {"X-AIO-Key": ADAFRUIT_IO_KEY})
-
+    
        
         amazeWarriorObj.orderId.orderStatus= "Delivered"
         amazeWarriorObj.orderId.save()
 
         return Response("Success")
     except:
+        messages.warning(request, 'Unable to open.. Invalid Credential at user end')
+        
         return Response("Failure")    
 
 
@@ -82,10 +85,15 @@ def openSanitizeRequest(request):
         dataObj = {"value": json.dumps(d)}
 
         x = requests.post(url, json = dataObj, headers = {"X-AIO-Key": ADAFRUIT_IO_KEY})
-
-        return Response("Success")
+        print(x.status_code)
+        if( x.status_code==404):
+            messages.warning(request, 'Unable to open.. Invalid Adafruit Username and Key')
+            return Response("Failure")    
+        else:
+            return Response("Success")
     except:
-        return Response("Failure")    
+        messages.warning(request, 'Unable to open.. Invalid Adafruit Username and Key')
+        return   Response("Failure")   
 
 
 @login_required
@@ -100,14 +108,18 @@ def checkThreat(request):
         url = 'https://io.adafruit.com/api/v2/'+ADAFRUIT_IO_USERNAME+'/feeds/send-esp/data/last' 
         x = requests.get(url, headers = {"X-AIO-Key": ADAFRUIT_IO_KEY})
         x = x.json()
-        y =json.loads(x["value"])
+        
+        try:
+            y =json.loads(x["value"])
 
-        if(y['ALARM']==True):
-            print("Alarm: On")
-            return Response("1")
-        else:
-            print("Alarm: Off")
-            return Response("0") 
+            if(y['ALARM']==True):
+                print("Alarm: On")
+                return Response("1")
+            else:
+                print("Alarm: Off")
+                return Response("0") 
+        except:    
+            return Response("Failure")     
     except:
         return Response("Failure")    
 

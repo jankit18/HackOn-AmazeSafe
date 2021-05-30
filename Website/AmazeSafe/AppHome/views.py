@@ -111,18 +111,24 @@ def threatRequest(request):
     url = 'https://io.adafruit.com/api/v2/'+ADAFRUIT_IO_USERNAME+'/feeds/send-esp/data/last' 
     x = requests.get(url, headers = {"X-AIO-Key": ADAFRUIT_IO_KEY})
     x = x.json()
-    y =json.loads(x["value"])
+    try:
+        y =json.loads(x["value"])
+        
+        context = {
+            "imageMatrix": y["IMAGE"],
+            "gpsCoordinate": y["GPS"],
+            "boxTemperature": y["TEMPERATURE"],
+            "alarmStatus": y["ALARM"],
+            "lastUpdate": x["updated_at"]
+        }
+        
+        return render(request,'threatPage.html',context)
+    except:
+        messages.warning(request, 'Cannot Investigate Threat.. Incorrect Credential')  
+        return redirect('amazeUser')
+          
+
     
-    context = {
-        "imageMatrix": y["IMAGE"],
-        "gpsCoordinate": y["GPS"],
-        "boxTemperature": y["TEMPERATURE"],
-        "alarmStatus": y["ALARM"],
-        "lastUpdate": x["updated_at"]
-    }
-
-
-    return render(request,'threatPage.html',context)
 
 @login_required
 def userLogout(request):
