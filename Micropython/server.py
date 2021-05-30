@@ -46,7 +46,20 @@ def run(essid, password):
                      'ALARM': event.alarm,
                      'IMAGE': event.image
                     }
-        src.send_data(send_info)
+        src.send_data(value = send_info, feed = src.FEED_SEND)
+        if init_data['delivered']:
+            send_info1 = {'open' : False,
+                         'delivered' : False,
+                         'sanatize' : False
+                         }
+            src.send_data(value = send_info1, feed = src.FEED_RECEIVE)
+        elif init_data['sanatize']:
+            send_info2 = {'open' : init_data['open'],
+                         'delivered' : False,
+                         'sanatize' : False
+                         }
+            src.send_data(value = send_info2, feed = src.FEED_RECEIVE) 
+                          
         print("*********************EVENT OVER **************************")
 
 
