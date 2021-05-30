@@ -10,7 +10,7 @@ This Micropython (IoT) and Python (Backend) demonstration is an implementation o
 - Upgaradibility - Easily upgradable standards.
 - Easy to Configure - These can be easlily configured and reconfigured.
 
-![](Fusion_360_3D_print_prototype/Images/Fig_2.jpeg)
+![](3D_print_prototype/Version_1.0/Images/Fig_2.jpeg)
 
 #### Development Setup for ESP32
 
@@ -39,6 +39,29 @@ FEED_RECEIVE = "XXXXX"  # esp receiving feed
 
 - Currently only SD card has been SPI interfaced other components couldn't be ordered due to lockdown. For example camera, vibration sensors etc.
 - For now GPS, Vibration and Temperature are being simulated using python random module for Testing purposes.
+
+#### Website
+
+Link for our website deployement is : https://amaze-safe.herokuapp.com/
+
+![](Website/Images/website_user.png)
+
+#### App
+
+Our App can be simulated for only IOS devices using XCode software.
+
+![](Swift_IOS_App/Images/alarm_red.jpeg)
+
+
+#### 3D print
+
+The product can be 3D printed using the STL File given further versions will lead to finer model.
+
+![](3D_print_prototype\Version_2.0\images\locking_mechanism.gif)
+*Locking Mechanism*
+
+![](3D_print_prototype\Version_2.0\images\sanitize_simulation.gif)
+*Sanitize Simulation*
 
 #### Contribute
 
