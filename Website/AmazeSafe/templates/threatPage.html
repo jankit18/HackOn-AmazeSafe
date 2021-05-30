@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Threat Page</title>
+  </head>
+  <body margin:0;>
+    <div class="home-button">
+      <button class="button"><a href="{% url 'amazeUser' %}">Back TO Home</a></button>
+    </div>
+    <!--
+    <div class="navbar">
+  <a href="#home">Home</a>
+  <a href="#home">Notify Friends</a>
+  <a href="#news">Stop Alarm</a>
+  <a href="#contact">Snapshot</a>
+  <a href="#contact">Get Location</a>
+
+
+</div>
+-->
+    <div class="Threat">
+      <p class="Threat-heading">THERE IS A THREAT !!</p>
+      <span>Last Updated at : {{lastUpdate}}</span>
+      <br></br>
+      <span>Box temperature: {{boxTemperature}}</span>
+        <br></br>
+    </div>
+
+
+    <div class="btn-group">
+  <button>Notify Friends</button>
+  <button>Stop Alarm</button>
+  <button>Snapshot</button>
+  <button>Get Location</button>
+</div>
+
+
+<div class="Section">Alarm Status : <span class="description">{{alarmStatus}}</span></div>
+<div class="Section">Geolocation Coordinates: <span class="description"> {{gpsCoordinate}}</span></div>
+<div class="Section">Snapshot Matrix : <span class="description">{{imageMatrix}}</span></div>
+<div class="Section">Friends List : <span class="description">Friends and their Whatsapp Numbers on which threat alert was sent</span></div>
+  </body>
+</html>
+<style>
+    .btn-group button {
+  background-color: red; /* Green background */
+  border: 5px solid black; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: right; /* Float the buttons side by side */
+  width:25%;
+  height:110px;
+  font-size: 40px;
+  display: inline-block;
+  border-radius: 16px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+.home-button{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 100px;
+}
+.button {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 30px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+body{
+  background-color: #CD5C5C
+}
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
+   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0
+}
+.header{
+  font-size: 40px;
+
+}
+.Threat{
+  padding-top: 50px;
+}
+.Section{
+  height:150px;
+  font-size: 70px;
+  margin-bottom: 200px;
+  margin-top: 100px;
+  color: white;
+  font-weight: bolder;
+}
+.Threat-heading{
+  font-size: 80px;
+  color :yellow	;
+  font-weight: bolder;
+}
+body {margin:0;}
+
+.navbar {
+  overflow: hidden;
+  background-color: #E0FFFF;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height:120px;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: red;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 40px;
+  width:20%;
+}
+
+.navbar a:hover {
+  background:#90EE90;
+  color: black;
+}
+
+.main {
+  padding: 16px;
+  margin-top: 30px;
+  height: 1500px; /* Used in this example to enable scrolling */
+}
+
+.alarm-image{
+  height:80px;
+  width:80px;
+
+}
+.alarmKaImage{
+  margin-left: :40px;
+}
+.description{
+  font-size: 40px;
+  color:yellow;
+}
+
+</style>

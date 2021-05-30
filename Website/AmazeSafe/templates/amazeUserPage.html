@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+<link rel="stylesheet" href="styles.css">
+</link>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Box Staus and Orders</title>
+  <!--Google Fonts-->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Limelight&display=swap" rel="stylesheet">
+  <!--Bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body>
+  <header>
+      <nav class="navbar">
+          <div class="container-fluid">
+              <h3>AmazeSafe</h3>
+          </div>
+      </nav>
+  <p class="status">Status: Safe</p>
+  
+  <br></br>
+<div>
+<button class="button"><a href="{% url 'threat' %}" >Investigate Threat</a></button>
+<button class="button" onclick="openSanitize()">sanitize and Open The Box</button>
+
+</div>
+
+<br></br>
+
+  <div class="row">
+    <div class="col-2">
+
+    </div>
+  <div class="col-8">
+  <div class="Orders In Box">
+
+    <h1>Orders In Box</h1>
+    <div class="ex1" id="oib"> 
+      
+    </div>
+  </div>
+</div>
+<div class="col-2">
+
+</div>
+</div>
+
+
+
+
+
+
+<div class="row">
+  <div class="col-2">
+
+  </div>
+<div class="col-8">
+  <div class="Out For Delivery">
+
+    <h1>Out For Delivery</h1>
+    <div class="ex1" id="ofd">
+      
+    </div>
+  </div>
+</div>
+    <div class="col-2">
+
+    </div>
+  </div>
+
+  <div class ="row">
+  <div class="col-2">
+
+  </div>
+  <div class="col-8">
+  <div class="Future Orders">
+
+    <h1>Future Orders</h1>
+    <div class="ex1" id="id">
+
+    </div>
+  </div>
+</div>
+<div class="col-2">
+
+</div>
+</div>
+
+
+  <div class="row">
+    <div class="col-2">
+
+    </div>
+  <div class="col-8">
+  <div class="Previous Orders">
+
+    <h1>Previous Orders</h1>
+    <div class="ex1" id="pd">
+      
+    </div>
+  </div>
+</div>
+<div class="col-2">
+
+</div>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+</html>
+
+<script>
+  
+  var oib = document.getElementById('oib')
+  var ofd = document.getElementById('ofd')
+  var id = document.getElementById('id')
+  var pd = document.getElementById('pd')
+
+  let oibContext = {{ordersInBox}}
+  let ofdContext = {{outForDeliveries}}
+  let idContext = {{incomingDeliveries}}
+  let pdContext = {{previousDeliveries}}
+
+  if(oibContext.length!=0)
+  {
+      for(let i = 0; i < oibContext.length; i++)
+      {
+        let x =`<span class="order-title">Order No: ${oibContext[i].orderId}</span> <br></br>Description: ${oibContext[i].orderName}<br></br>
+                <p>Cost : ${oibContext[i].orderCost}</p>
+                <p>Ordered On : ${oibContext[i].orderDate}</p>`
+        oib.innerHTML +=x
+      }
+  }
+  else
+  {
+      oib.innerHTML +=`<span class="order-title">No Order In Box</span>`
+  }
+
+  if(ofdContext.length!=0)
+  {
+      for( let i = 0; i < ofdContext.length; i++)
+      {
+        let x =`<span class="order-title">Order No: ${ofdContext[i].orderId}</span> <br></br>Description: ${ofdContext[i].orderName}<br></br>
+                <p>Cost : ${ofdContext[i].orderCost}</p>
+                <p>Ordered On : ${ofdContext[i].orderDate}</p>`
+        
+        ofd.innerHTML+=x
+      }
+  }
+  else
+  {
+      ofd.innerHTML+=`<span class="order-title">No Out For Delivery Orders</span>`
+  }
+
+  if(idContext.length!=0)
+  {
+      for(let i = 0; i < idContext.length; i++)
+      {
+        let x =`<span class="order-title">Order No: ${idContext[i].orderId}</span> <br></br>Description: ${idContext[i].orderName}<br></br>
+                <p>Cost : ${idContext[i].orderCost}</p>
+                <p>Ordered On : ${idContext[i].orderDate}</p>`
+
+        id.innerHTML+=x
+      }
+  }
+  else
+  {
+      id.innerHTML+=`<span class="order-title">No Incoming Orders</span>`
+  }
+  
+
+  
+
+  if(pdContext.length!=0)
+  {
+      for(let i = 0; i < pdContext.length; i++)
+      {
+        let x =`<span class="order-title">Order No: ${pdContext[i].orderId}</span> <br></br>Description: ${pdContext[i].orderName}<br></br>
+                <p>Cost : ${pdContext[i].orderCost}</p>
+                <p>Ordered On : ${pdContext[i].orderDate}</p>`
+
+        pd.innerHTML+=x
+      }
+  }
+  else
+  {
+      pd.innerHTML+=`<span class="order-title">No Previous Orders</span>`
+  }
+  
+  function openSanitize(){
+      
+      url ="http://127.0.0.1:8000/api/openSanitize/"
+      fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data){
+            if (data== "Success")
+                console.log("Succes box sanitized and open")
+            else
+                 console.log("Error enable to open box")  
+        })  
+  }
+
+
+</script>
+<style>
+* {
+  box-sizing: border-box;
+}
+body{
+  background: #757F9A;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #D7DDE8, #757F9A);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.Threat{
+  display: inline-block;
+}
+.hello{
+  display: inline-block;
+}
+h1{
+  background-color: white;
+  text-align: center;
+  justify-content: center;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+span, h1{
+  font-family: 'Lato';
+  font-weight: 300;
+}
+.status{
+  font-family: 'Limelight', cursive;
+  font-weight: 100;
+}
+.button {
+  background-color: #4CAF50;
+  box-shadow: 0 6px #3c7d3f;
+  font-family: 'Lato';
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display:inline-block;
+  font-size: 16px;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  margin-left: 30px;
+  width:30%;
+  border-radius: 100px;
+}
+.button:hover {
+    transform: scale(1.10);
+    box-shadow: 0 8px #3c7d3f;
+    top: 2px;
+}
+div.ex1 {
+  background-color: white;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 300px;
+  overflow: scroll;
+  border: 3px solid black;
+}
+.order-title{
+  font-weight: bolder;
+  font-size: 30px;
+}
+.Future-Orders{
+  margin-top:50px;
+}
+.status{
+  font-size: 30px;
+}
+.navbar {
+    background-color: #151945;
+    color: white;
+}
+
+
+
+</style>

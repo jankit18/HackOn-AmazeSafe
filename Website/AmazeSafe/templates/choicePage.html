@@ -1,0 +1,558 @@
+<!DOCTYPE html> {% load static %}
+<html>
+
+<head>
+    <Title>AmazeSafe</Title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <header>
+        <div class="main">
+            <ul>
+                <li><a href="https://amazon.in" id="active">AMAZON</a></li>
+            </ul>
+        </div>
+        <div class="body">
+            <h1>Continue As</h1>
+            <br>
+            <button class="open-button" onclick="selectAsWarrior()">Amaze Warrior</button>
+            <button class="open-button" data-modal-target="#modal">Amaze User</button>
+        </div>
+
+
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <div class="title">Box Information</div>
+
+                <button data-close-button class="close-button">&times</button>
+            </div>
+
+            <div class="tab-content">
+                <div id="tab-name">
+                    <div id="tab1" data-tab-target="#signup" class="active ">AmazeSafe</div>
+                </div>
+                <div id="signup" data-tab-content class="active">
+
+                    <p class="title1"> Enter the Adafruit Details</p>
+
+                    <form id="Sign-up-form">
+
+                        <input type="input" id="username" class="Sign-up-form-field" placeholder="Adafruit Username">
+                        <input type="input" id="io-token" class="Sign-up-form-field" placeholder="Adafruit IO Token">
+                        
+                        <button id="Sign-up-form-submit" onclick="selectAsUser()">Dive in as User</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div id="overlay">
+    </header>
+</body>
+
+</html>
+<style>
+    [data-tab-content] {
+        display: none;
+    }
+    
+    [data-tab-content] {
+        display: none;
+    }
+    
+    .active[data-tab-content] {
+        width: 450px;
+        max-width: 100%;
+        border: 8px;
+        border-left: #1A73E8;
+        border-right: #1A73E8;
+        background-color: #FFFFFF;
+        display: grid;
+        justify-items: center;
+        align-items: top;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        box-shadow: 0px 0px 1px 0px black;
+        z-index: 1;
+    }
+    
+    .close-button {
+        color: #F1E7FF;
+    }
+    
+    .modal {
+        padding: 4px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: 200ms ease-in-out;
+        align-items: center;
+        border-radius: 10px;
+        z-index: 10;
+        background-color: #191275;
+        color: #F1E7FF;
+        width: 450px;
+        max-width: 80%;
+    }
+    
+    .modal.active {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .modal-header {
+        padding: 10px 15px;
+        display: flex;
+        justify-content: left;
+        align-items: right;
+    }
+    
+    .modal-header .title {
+        font-style: italic;
+        font-weight: lighter;
+    }
+    
+    .modal-header .close-button {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        background: none;
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+    
+    #overlay {
+        position: fixed;
+        opacity: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        pointer-events: none;
+        z-index: 1;
+    }
+    
+    #overlay.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+    
+    #tab-name {
+        display: flex;
+        justify-content: center;
+    }
+    
+    #tab1 {
+        width: 100%;
+        margin: 0;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+        background-color: #3a3a3a;
+        color: #F1E7FF;
+        list-style-type: none;
+        cursor: pointer;
+        padding: 10px 10px 10px 10px;
+    }
+    
+    #tab1.active {
+        color: black;
+        background-color: #F1E7FF;
+        font-family: 'Poppins', sans-serif;
+        font-size: larger;
+    }
+    
+    #tab2 {
+        float: right;
+        width: 221px;
+        max-width: 100%;
+        margin: 0;
+        border-top-right-radius: 10px;
+        justify-content: space-around;
+        text-align: center;
+        font-weight: bold;
+        background-color: #3a3a3a;
+        color: white;
+        list-style-type: none;
+        cursor: pointer;
+        padding: 10px;
+    }
+    
+    #tab2.active {
+        color: black;
+        background-color: white;
+    }
+    
+    #main-holder {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        background-color: #1A73E8;
+        background-color: rgba(36, 7, 104, 0.2);
+    }
+    
+    #main-holder-in {
+        width: 100px;
+        background-color: #1A73E8;
+    }
+    
+    #forget {
+        width: 20%;
+        text-align: left;
+        margin: 0;
+        padding: 5px;
+        font-size: 10px;
+        font-weight: bold;
+        color: #8a0000;
+    }
+    
+    .logo_size {
+        margin-top: 20px;
+        max-width: 120px;
+        max-height: 120px;
+    }
+    
+    .title {
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        border: 5px;
+        border-color: black;
+    }
+    
+    .title1 {
+        color: black;
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        border: 5px;
+        border-color: black;
+        margin: 20px;
+    }
+    
+    .error-msg {
+        width: 80%;
+        text-align: left;
+        margin: 0;
+        font-size: 10px;
+        font-weight: bold;
+        color: #8a0000;
+        background-color: #FFFFFF;
+    }
+    
+    #icon-1 {
+        width: 30%;
+        height: 20%;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+    
+    .select-box {
+        width: 84%;
+    }
+    
+    .select-box .options-container {
+        background: #2f3640;
+        color: #f5f6fa;
+        max-height: 0px;
+        width: 82%;
+        opacity: 0;
+        transition: all 0.4s;
+        border-radius: 8px;
+        overflow: hidden;
+        position: absolute;
+        order: 1;
+    }
+    
+    .selected {
+        width: 100%;
+        background: #2f3640;
+        border-radius: 10px;
+        margin-bottom: 1px;
+        font-size: 14px;
+        color: #f5f6fa;
+        position: relative;
+        order: 0;
+    }
+    
+    .selected::after {
+        content: "";
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        height: 100%;
+        width: 32px;
+        right: 10px;
+        top: 5px;
+        transition: all 0.4s;
+    }
+    
+    .select-box .options-container.active {
+        max-height: 120px;
+        max-width: 500px;
+        opacity: 1;
+        overflow-y: scroll;
+    }
+    
+    .select-box .options-container.active+.selected::after {
+        transform: rotateY(180deg);
+    }
+    
+    .select-box .options-container::-webkit-scrollbar {
+        width: 8px;
+        background: #0d141f;
+        border-radius: 0 8px 8px 0;
+    }
+    
+    .select-box .options-container::-webkit-scrollbar-thumb {
+        background: #525861;
+        border-radius: 0px 8px 8px 0;
+    }
+    
+    .select-box .option,
+    .selected {
+        padding: 10px 14px 10px 14px;
+        cursor: pointer;
+    }
+    
+    .select-box .option:hover {
+        background: #414b57;
+    }
+    
+    .select-box label {
+        cursor: pointer;
+        padding-right: 90px;
+    }
+    
+    .select-box .option .radio {
+        display: none;
+    }
+    
+    #Sign-up-form {
+        width: 100%;
+        height: 100%;
+        margin-bottom: 20%;
+        align-self: flex-start;
+        display: grid;
+        justify-items: center;
+        align-items: top;
+    }
+    
+    .Sign-up-form-field::placeholder {
+        color: black;
+    }
+    
+    .Sign-up-form-field {
+        width: 70%;
+        height: 70%;
+        background-color: #E8F0FE;
+        border: 1px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        outline: none;
+        padding: 5px 5px 5px 15px;
+    }
+    
+    #Sign-up-form-submit {
+        width: 70%;
+        height: 40%;
+        margin-bottom: 50px;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        color: #F1E7FF;
+        font-weight: bold;
+        background-color: #191275;
+        cursor: pointer;
+        outline: none;
+    }
+    
+    .dropdown {
+        float: left;
+        overflow: hidden;
+    }
+    
+    .dropdown .dropbtn {
+        font-size: 14px;
+        border: none;
+        color: black;
+        background-color: inherit;
+        font-family: inherit;
+        padding: 1rem;
+    }
+    
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: bisque;
+        color: black;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+    
+    .dropdown-content a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+    
+    .topnav a:hover,
+    .dropdown:hover .dropbtn {
+        background-color: aqua;
+        color: black;
+    }
+    
+    .dropdown-content a:hover {
+        background-color: black;
+        color: bisque;
+    }
+    
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    
+    @media screen and (max-width: 600px) {}
+</style>
+
+<script>
+    const openModalButtons = document.querySelectorAll('[data-modal-target]')
+    const closeModalButtons = document.querySelectorAll('.close-button')
+    const overlay = document.getElementById('overlay')
+
+    openModalButtons.forEach(button => {
+        console.log("entered")
+        button.addEventListener('click', () => {
+            const modal = document.querySelector(button.dataset.modalTarget)
+            console.log(modal)
+            openModal(modal)
+        })
+    })
+
+    overlay.addEventListener('click', () => {
+        const modals = document.querySelectorAll('.modal.active')
+        modals.forEach(modal => {
+            closeModal(modal)
+        })
+        const modals1 = document.querySelectorAll('.modal1.active')
+        modals1.forEach(modal => {
+            closeModal(modal)
+        })
+    })
+
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.modal')
+            closeModal(modal)
+            const modal1 = button.closest('.modal1')
+            closeModal(modal1)
+        })
+    })
+
+    function openModal(modal) {
+        if (modal == null) return
+        modal.classList.add('active')
+        overlay.classList.add('active')
+    }
+
+    function closeModal(modal) {
+        if (modal == null) return
+        modal.classList.remove('active')
+        overlay.classList.remove('active')
+    }
+
+    const tabs = document.querySelectorAll('[data-tab-target]')
+    const tabContents = document.querySelectorAll('[data-tab-content]')
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = document.querySelector(tab.dataset.tabTarget)
+            tabContents.forEach(tabContent => {
+                tabContent.classList.remove('active')
+            })
+            tabs.forEach(tab => {
+                tab.classList.remove('active')
+            })
+            tab.classList.add('active')
+            target.classList.add('active')
+        })
+    })
+
+    function selectAsWarrior()
+    {
+        let data = JSON.stringify({"userMode": "D", "adafruitToken": "","adafruitUserName":""});
+        let csrftoken = getCookie('csrftoken');
+
+        let url1 = "http://127.0.0.1:8000/api/selectMode/"
+        console.log(url1)
+        fetch(url1, {
+            method: "POST",
+            body: data,
+            headers: { 'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+                "X-CSRFToken": csrftoken },
+        })
+        .then((resp) => resp.json())
+        .then(function (data) {
+            if (data=="Success")
+                location.href = "http://127.0.0.1:8000/amaze-warrior/"
+            else
+                console.log("failure")    
+        })
+    }
+
+    function selectAsUser()
+    {
+      console.log("op")
+       
+       let name =document.getElementById('username').value
+       let io_token =  document.getElementById('io-token').value
+        let data = JSON.stringify({"userMode": "U", "adafruitToken": io_token,"adafruitUserName":name});
+        let csrftoken = getCookie('csrftoken');
+
+        let url1 = "http://127.0.0.1:8000/api/selectMode/"
+        console.log(url1)
+        fetch(url1, {
+            method: "POST",
+            body: data,
+            headers: { 'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+                "X-CSRFToken": csrftoken },
+        })
+        .then((resp) => resp.json())
+        .then(function (data) {
+            if (data=="Success")
+                location.href = "http://127.0.0.1:8000/amaze-user/"
+            else
+                console.log("failure")    
+        }) 
+    }
+
+    function getCookie(name) {
+          var cookieValue = null;
+          if (document.cookie && document.cookie !== '') {
+              var cookies = document.cookie.split(';');
+              for (var i = 0; i < cookies.length; i++) {
+                  var cookie = cookies[i].trim();
+                  if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                      break;
+                  }
+              }
+          }
+          return cookieValue;
+      }
+</script>
