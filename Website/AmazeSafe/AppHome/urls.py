@@ -1,5 +1,8 @@
 from django.urls import path,include
 from . import views
+
+# List of different html end-points of the project
+
 urlpatterns = [
      path('',views.loginHome, name="loginHome"),
      path('category/',views.distinguishUser, name="selectUser"),

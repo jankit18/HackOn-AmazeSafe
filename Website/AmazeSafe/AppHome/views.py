@@ -8,9 +8,14 @@ from django.utils.safestring import SafeString
 import requests
 import json
 
+
+# fuction receive request for login Page 
 def loginHome(request):
     return render(request, 'index.html')
 
+
+# fuction receive request for distinguishing page
+# perform dinstinct action based on Usermode 
 @login_required
 def distinguishUser(request):
     userObj = UserInfo.objects.filter(userInstance=request.user)
@@ -26,6 +31,8 @@ def distinguishUser(request):
            return      redirect('amazeUser')
         
             
+# fuction receive request for Amaze-Warrior Page 
+# show different different states of order assigned to him/her
 
 @login_required
 def warriorRequest(request):
@@ -64,6 +71,9 @@ def warriorRequest(request):
     return render(request,'amazeWarriorPage.html',context) 
 
 
+# fuction receive request for Aamze-User Page
+#  show different different states of order purchased by him/her
+
 
 @login_required
 def clientRequest(request):      
@@ -101,6 +111,9 @@ def clientRequest(request):
     }
     return render(request,'amazeUserPage.html',context)
 
+# Function which will receive request after any possible Alert
+# show GPS coordinate, SnapShot of the Situation
+# also send message to connected neighbour
 
 @login_required
 def threatRequest(request): 
@@ -129,6 +142,7 @@ def threatRequest(request):
           
 
     
+# function to be triggered for User Log-Out
 
 @login_required
 def userLogout(request):
