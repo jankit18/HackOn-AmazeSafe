@@ -64,9 +64,18 @@ def run(essid, password):
                          'delivered' : False,
                          'sanitize' : False
                          }
-            src.send_data(value = send_info2, feed = src.FEED_RECEIVE) 
+            src.send_data(value = send_info2, feed = src.FEED_RECEIVE)
+        if open_>2:
+            print("OPEN TIMEOUT BOX CLOSING")
+            send_info3 = {'open' : False,
+                         'delivered' : False,
+                         'sanitize' : False
+                         }
+            src.send_data(value = send_info3, feed = src.FEED_RECEIVE)
+            open_ = 0
                           
         print("*********************EVENT OVER **************************")
         
     print("##################Alarm is ON Your package is in threat#############")
+
 
