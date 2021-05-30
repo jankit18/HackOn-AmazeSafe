@@ -57,10 +57,10 @@ Our App can be simulated for only IOS devices using XCode software.
 
 The product can be 3D printed using the STL File given further versions will lead to finer model.
 
-![](3D_print_prototype\Version_2.0\images\locking_mechanism.gif)
+![](https://github.com/jankit18/HackOn-AmazeSafe/blob/main/3D_print_prototype/Version_2.0/images/locking_mechanism.gif)
 *Locking Mechanism*
 
-![](3D_print_prototype\Version_2.0\images\sanitize_simulation.gif)
+![](https://github.com/jankit18/HackOn-AmazeSafe/blob/main/3D_print_prototype/Version_2.0/images/sanitize_simulation.gif)
 *Sanitize Simulation*
 
 #### Contribute
