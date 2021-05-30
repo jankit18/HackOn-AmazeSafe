@@ -7,3 +7,4 @@ USER_NAME = "XXXXXXXXXXXXXXX"  # username of the user
 FEED_SEND = "xxxxxxx"  # esp sending feed
 API_KEY = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX'  # api key
 FEED_RECEIVE = "XXXXX"  # esp receiving feed
+VIBRATION_FREQUENCY = 6 #random vibration frequency
