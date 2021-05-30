@@ -1,65 +1,73 @@
-<!DOCTYPE html> {% load static %}
+<!DOCTYPE html>
+
+<!--{% load static %}-->
+
 <html>
 
 <head>
+
     <Title>AmazeSafe</Title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Limelight&display=swap" rel="stylesheet">
+
 </head>
 
+
+
 <body>
-
     <header>
-        <div class="main">
-            <ul>
-                <li><a href="https://amazon.in" id="active">AMAZON</a></li>
-            </ul>
-        </div>
-        <div class="body">
-            <h1>Continue As</h1>
-            <br>
-            <button class="open-button" onclick="selectAsWarrior()">Amaze Warrior</button>
-            <button class="open-button" data-modal-target="#modal">Amaze User</button>
-        </div>
-
-
-        <div class="modal" id="modal">
-            <div class="modal-header">
-                <div class="title">Box Information</div>
-
-                <button data-close-button class="close-button">&times</button>
-            </div>
-
-            <div class="tab-content">
-                <div id="tab-name">
-                    <div id="tab1" data-tab-target="#signup" class="active ">AmazeSafe</div>
-                </div>
-                <div id="signup" data-tab-content class="active">
-
-                    <p class="title1"> Enter the Adafruit Details</p>
-
-                    <form id="Sign-up-form">
-
-                        <input type="input" id="username" class="Sign-up-form-field" placeholder="Adafruit Username">
-                        <input type="input" id="io-token" class="Sign-up-form-field" placeholder="Adafruit IO Token">
-                        
-                        <button id="Sign-up-form-submit" onclick="selectAsUser()">Dive in as User</button>
-                    </form>
-
+        <div class="row">
+            <div class="col-8">
+                <div class="container">
+                    <h1>Continue To AmazeSafe As</h1>
+                    <br>
+                    <div class="button">
+                        <button class="btn open-button" onclick="selectAsWarrior()">Amaze Warrior</button>
+                        <button class="btn open-button" data-modal-target="#modal">Amaze User</button>
+                    </div>
                 </div>
             </div>
+            <div class="col-2"></div>
         </div>
-
-
-        <div id="overlay">
     </header>
+
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <div class="title">Box Information</div>
+            <button data-close-button class="close-button">&times</button>
+        </div>
+
+        <div class="tab-content">
+            <div id="tab-name">
+                <div id="tab1" data-tab-target="#signup" class="active ">AmazeSafe</div>
+            </div>
+            <div id="signup" data-tab-content class="active">
+                <p class="title1"> Enter the Adafruit Details</p>
+
+                <form id="Sign-up-form">
+                    <input type="input" id="username" class="Sign-up-form-field" placeholder="Adafruit Username">
+                    <input type="input" id="io-token" class="Sign-up-form-field" placeholder="Adafruit IO Token">
+                    <button id="Sign-up-form-submit" onclick="selectAsUser()">Dive in as User</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div id="overlay">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
+
 <style>
-    [data-tab-content] {
-        display: none;
-    }
-    
     [data-tab-content] {
         display: none;
     }
@@ -78,6 +86,77 @@
         border-bottom-right-radius: 10px;
         box-shadow: 0px 0px 1px 0px black;
         z-index: 1;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        background: #757F9A;
+        /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #D7DDE8, #757F9A);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #D7DDE8, #757F9A);
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        font-family: 'Lato';
+        font-weight: 300;
+    }
+    
+    .navbar {
+        height: 5%;
+        background-color: #151945;
+        color: white;
+    }
+    
+    .row {
+        margin-top: 90px;
+    }
+    
+    .col-2 {
+        display: flex;
+        justify-content: center
+    }
+    
+    .col-8 {
+        display: flex;
+        justify-content: center
+    }
+    
+    .container {
+        width: 70%;
+        background-color: white;
+        border-radius: 15px;
+        padding: 10px 15px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .btn {
+        background-color: #4CAF50;
+        box-shadow: 0 6px #3c7d3f;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: auto;
+        border-radius: 15px;
+        margin-left: 10px;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+    
+    .button {
+        margin: auto;
+    }
+    
+    .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px #3c7d3f;
+        top: 2px;
     }
     
     .close-button {
@@ -424,23 +503,25 @@
     .dropdown:hover .dropdown-content {
         display: block;
     }
-    
-    @media screen and (max-width: 600px) {}
 </style>
+
+
 
 <script>
     const openModalButtons = document.querySelectorAll('[data-modal-target]')
     const closeModalButtons = document.querySelectorAll('.close-button')
     const overlay = document.getElementById('overlay')
 
+
+
     openModalButtons.forEach(button => {
-        console.log("entered")
         button.addEventListener('click', () => {
             const modal = document.querySelector(button.dataset.modalTarget)
-            console.log(modal)
             openModal(modal)
         })
     })
+
+
 
     overlay.addEventListener('click', () => {
         const modals = document.querySelectorAll('.modal.active')
@@ -448,10 +529,13 @@
             closeModal(modal)
         })
         const modals1 = document.querySelectorAll('.modal1.active')
+
         modals1.forEach(modal => {
             closeModal(modal)
         })
     })
+
+
 
     closeModalButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -462,11 +546,15 @@
         })
     })
 
+
+
     function openModal(modal) {
         if (modal == null) return
         modal.classList.add('active')
         overlay.classList.add('active')
     }
+
+
 
     function closeModal(modal) {
         if (modal == null) return
@@ -474,8 +562,12 @@
         overlay.classList.remove('active')
     }
 
+
+
     const tabs = document.querySelectorAll('[data-tab-target]')
     const tabContents = document.querySelectorAll('[data-tab-content]')
+
+
 
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -483,76 +575,105 @@
             tabContents.forEach(tabContent => {
                 tabContent.classList.remove('active')
             })
+
             tabs.forEach(tab => {
                 tab.classList.remove('active')
             })
+
             tab.classList.add('active')
             target.classList.add('active')
         })
+
     })
 
-    function selectAsWarrior()
-    {
-        let data = JSON.stringify({"userMode": "D", "adafruitToken": "","adafruitUserName":""});
+
+
+    function selectAsWarrior() {
+
+        let data = JSON.stringify({
+            "userMode": "D",
+            "adafruitToken": "",
+            "adafruitUserName": ""
+        });
+
         let csrftoken = getCookie('csrftoken');
 
         let url1 = "http://127.0.0.1:8000/api/selectMode/"
-        console.log(url1)
+
         fetch(url1, {
-            method: "POST",
-            body: data,
-            headers: { 'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json',
-                "X-CSRFToken": csrftoken },
-        })
-        .then((resp) => resp.json())
-        .then(function (data) {
-            if (data=="Success")
-                location.href = "http://127.0.0.1:8000/amaze-warrior/"
-            else
-                console.log("failure")    
-        })
+                method: "POST",
+                body: data,
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json',
+                    "X-CSRFToken": csrftoken
+                },
+            })
+            .then((resp) => resp.json())
+            .then(function(data) {
+
+                if (data == "Success")
+                    location.href = "http://127.0.0.1:8000/amaze-warrior/"
+                else
+                    console.log("failure")
+
+            })
+
     }
 
-    function selectAsUser()
-    {
-      console.log("op")
-       
-       let name =document.getElementById('username').value
-       let io_token =  document.getElementById('io-token').value
-        let data = JSON.stringify({"userMode": "U", "adafruitToken": io_token,"adafruitUserName":name});
+
+
+    function selectAsUser() {
+
+        let name = document.getElementById('username').value
+        let io_token = document.getElementById('io-token').value
+
+        let data = JSON.stringify({
+            "userMode": "U",
+            "adafruitToken": io_token,
+            "adafruitUserName": name
+        });
+
         let csrftoken = getCookie('csrftoken');
 
         let url1 = "http://127.0.0.1:8000/api/selectMode/"
-        console.log(url1)
+
         fetch(url1, {
-            method: "POST",
-            body: data,
-            headers: { 'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json',
-                "X-CSRFToken": csrftoken },
-        })
-        .then((resp) => resp.json())
-        .then(function (data) {
-            if (data=="Success")
-                location.href = "http://127.0.0.1:8000/amaze-user/"
-            else
-                console.log("failure")    
-        }) 
+
+                method: "POST",
+                body: data,
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json',
+                    "X-CSRFToken": csrftoken
+                },
+
+            })
+            .then((resp) => resp.json())
+            .then(function(data) {
+                if (data == "Success")
+                    location.href = "http://127.0.0.1:8000/amaze-user/"
+                else
+                    console.log("failure")
+            })
+
     }
+
+
 
     function getCookie(name) {
-          var cookieValue = null;
-          if (document.cookie && document.cookie !== '') {
-              var cookies = document.cookie.split(';');
-              for (var i = 0; i < cookies.length; i++) {
-                  var cookie = cookies[i].trim();
-                  if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                      break;
-                  }
-              }
-          }
-          return cookieValue;
-      }
+
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
 </script>
