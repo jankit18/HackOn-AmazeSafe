@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  AmazSafe
 //
-//  Created by Kshitij Shrivastava on 30/05/21.
+//  Created by Kshitij Shrivastava on 30/05/21. This controls the  main view of the app
 //
 
 import UIKit
